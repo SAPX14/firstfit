@@ -1,0 +1,27 @@
+data segment
+    str db 99h,12h,56h,45h,36h
+    data ends
+code segment
+    assume cs:code,ds:data
+    start:
+    mov ax,data
+    mov ds,ax
+    mov ch,04h
+    lea si,str
+    mov cl,[si]
+    mov dl,[si]
+    up:
+    mov al,[si]
+    cmp al,cl
+    jc down
+    mov cl,al
+    down:
+    cmp al,dl
+    jnc go
+    mov dl,al
+    go:
+    inc si
+    dec ch
+    jnz up
+    end start
+    code ends
