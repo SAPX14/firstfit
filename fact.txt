@@ -1,0 +1,46 @@
+# macro fact
+
+factorial macro n
+    loop:
+    mul n
+    dec n
+    jnz loop
+endm
+data segment 
+    num dw 05h  
+    result dw ?
+    data ends
+code segment 
+    assume ds:data,cs:code
+    start:
+    mov ax,data
+    mov ds,ax
+    mov ax,0001h
+    factorial num
+    mov result,ax
+    end start
+    code ends 
+
+# proc fact
+
+data segment
+    num dw 05h
+    result dw ?
+    data ends
+code segment
+    assume cs:code,ds:data
+    start:
+    mov ax,data
+    mov ds,ax
+    mov ax,0001h
+    call factorial
+    int 21h
+    proc factorial near
+        loop:
+        mul num
+        dec num
+        jnz loop
+        mov result,ax
+        factorial endp
+    end start
+    code ends
