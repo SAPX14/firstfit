@@ -1,0 +1,20 @@
+mov ax,[1000h]
+mov bx,[1002h]
+mov cx,0h
+add ax,bx
+jnc jump
+inc cx 
+jump:
+mov cx,[1006h]
+hlt
+
+mov ax,[1000h]
+mov bx,[1002h]
+mov cx,0h
+sub ax,bx
+jnb jump
+inc cx 
+jump:
+mov cx,[1006h]
+hlt
+
